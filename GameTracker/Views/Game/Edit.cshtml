@@ -1,0 +1,85 @@
+@* 
+    This is the EDIT VIEW - it shows a form to edit an existing game
+    It's very similar to Create, but the form is pre-filled with existing data
+*@
+
+@model GameTracker.Models.Game
+
+@{
+    ViewData["Title"] = "Edit Game";
+}
+
+<h1>?? Edit Game</h1>
+<p class="text-muted">Update the details of your game</p>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        @* 
+            This form sends data to /Game/Edit
+            Notice we include the game's ID as a hidden field so the controller
+            knows which game to update
+        *@
+        <form asp-action="Edit" method="post">
+            
+            @* Hidden field to store the game's ID *@
+            <input type="hidden" asp-for="Id" />
+            
+            @* Hidden field to keep the original DateAdded *@
+            <input type="hidden" asp-for="DateAdded" />
+
+            @* Title field *@
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Game Title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            @* Platform field *@
+            <div class="mb-3">
+                <label asp-for="Platform" class="form-label">Platform</label>
+                <input asp-for="Platform" class="form-control" />
+                <span asp-validation-for="Platform" class="text-danger"></span>
+            </div>
+
+            @* Genre field *@
+            <div class="mb-3">
+                <label asp-for="Genre" class="form-label">Genre</label>
+                <input asp-for="Genre" class="form-control" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+
+            @* Completed checkbox *@
+            <div class="mb-3 form-check">
+                <input asp-for="IsCompleted" class="form-check-input" type="checkbox" />
+                <label asp-for="IsCompleted" class="form-check-label">
+                    I've completed this game
+                </label>
+            </div>
+
+            @* Buttons *@
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">?? Save Changes</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    @* Info panel *@
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">?? Game Info</h5>
+                <p class="small">
+                    <strong>Game ID:</strong> @Model.Id<br />
+                    <strong>Added:</strong> @Model.DateAdded.ToString("MMM dd, yyyy")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

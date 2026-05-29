@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">🎮 Game Backlog Tracker</h1>
+    <p class="lead">Keep track of all the games you want to play!</p>
+    <hr />
+    <p>
+        <a asp-controller="Game" asp-action="Index" class="btn btn-primary btn-lg">
+            View My Game Backlog →
+        </a>
+    </p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3>📝 Track</h3>
+                <p>Add all the games you want to play to your backlog</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3>✅ Organize</h3>
+                <p>Keep track of which games you've completed</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3>🎯 Plan</h3>
+                <p>See your gaming backlog and plan what to play next</p>
+            </div>
+        </div>
+    </div>
+</div>
+

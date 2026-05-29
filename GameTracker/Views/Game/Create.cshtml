@@ -1,0 +1,83 @@
+@* 
+    This is the CREATE VIEW - it shows a form to add a new game
+    When the user fills out the form and clicks Save, the data is sent
+    to the GameController's Create action (the [HttpPost] one)
+*@
+
+@model GameTracker.Models.Game
+
+@{
+    ViewData["Title"] = "Add New Game";
+}
+
+<h1>? Add New Game</h1>
+<p class="text-muted">Fill in the details of the game you want to add to your backlog</p>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        @* 
+            This creates a form that will POST data to /Game/Create
+            asp-action tells it which controller action to send the data to
+        *@
+        <form asp-action="Create" method="post">
+            
+            @* Title field *@
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Game Title</label>
+                <input asp-for="Title" class="form-control" placeholder="e.g., The Legend of Zelda" />
+                @* This shows validation errors if the user doesn't fill in the title *@
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            @* Platform field *@
+            <div class="mb-3">
+                <label asp-for="Platform" class="form-label">Platform</label>
+                <input asp-for="Platform" class="form-control" placeholder="e.g., Nintendo Switch, PC, Xbox" />
+                <span asp-validation-for="Platform" class="text-danger"></span>
+            </div>
+
+            @* Genre field *@
+            <div class="mb-3">
+                <label asp-for="Genre" class="form-label">Genre</label>
+                <input asp-for="Genre" class="form-control" placeholder="e.g., RPG, Action, Puzzle" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+
+            @* Completed checkbox *@
+            <div class="mb-3 form-check">
+                <input asp-for="IsCompleted" class="form-check-input" type="checkbox" />
+                <label asp-for="IsCompleted" class="form-check-label">
+                    I've already completed this game
+                </label>
+            </div>
+
+            @* Buttons *@
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">?? Save Game</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    @* Help panel *@
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h5 class="card-title">?? Tips</h5>
+                <ul class="small">
+                    <li>The title is the name of the game</li>
+                    <li>Platform is where you play it (PC, console, etc.)</li>
+                    <li>Genre is the type of game (RPG, Action, etc.)</li>
+                    <li>Check "completed" if you've already finished it</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* This includes validation scripts so the form checks data before submitting *@
+    <partial name="_ValidationScriptsPartial" />
+}
