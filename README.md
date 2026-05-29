@@ -65,27 +65,34 @@ Here is what happens when you add a new game:
 
 ```
 GameTracker/
-??? Controllers/
-?   ??? GameController.cs       <- Handles all game-related requests
-?   ??? HomeController.cs       <- Handles home page
-??? Models/
-?   ??? Game.cs                 <- Represents a single game
-?   ??? ErrorViewModel.cs       <- For error pages
-??? Services/
-?   ??? GameService.cs          <- Manages game data (in-memory storage)
-??? Views/
-?   ??? Game/
-?   ?   ??? Index.cshtml        <- Shows list of all games
-?   ?   ??? Create.cshtml       <- Form to add a new game
-?   ?   ??? Edit.cshtml         <- Form to edit a game
-?   ?   ??? Delete.cshtml       <- Confirmation before deleting
-?   ??? Home/
-?   ?   ??? Index.cshtml        <- Home page
-?   ?   ??? Privacy.cshtml      <- Privacy page
-?   ??? Shared/
-?       ??? _Layout.cshtml      <- Main layout template (header, footer, navigation)
-?       ??? Error.cshtml        <- Error page
-??? Program.cs                  <- Application startup and configuration
+|
++-- Controllers/
+|   +-- GameController.cs       <- Handles all game-related requests
+|   +-- HomeController.cs       <- Handles home page
+|
++-- Models/
+|   +-- Game.cs                 <- Represents a single game
+|   +-- ErrorViewModel.cs       <- For error pages
+|
++-- Services/
+|   +-- GameService.cs          <- Manages game data (in-memory storage)
+|
++-- Views/
+|   +-- Game/
+|   |   +-- Index.cshtml        <- Shows list of all games
+|   |   +-- Create.cshtml       <- Form to add a new game
+|   |   +-- Edit.cshtml         <- Form to edit a game
+|   |   +-- Delete.cshtml       <- Confirmation before deleting
+|   |
+|   +-- Home/
+|   |   +-- Index.cshtml        <- Home page
+|   |   +-- Privacy.cshtml      <- Privacy page
+|   |
+|   +-- Shared/
+|       +-- _Layout.cshtml      <- Main layout template (header, footer, navigation)
+|       +-- Error.cshtml        <- Error page
+|
++-- Program.cs                  <- Application startup and configuration
 ```
 
 ---
