@@ -1,242 +1,173 @@
-# ?? Quick Reference Card - MVC Cheat Sheet
+# Quick Reference - MVC Cheat Sheet
 
-Print this out or keep it handy while coding!
+## MVC Components
 
----
+| Component | What It Is | Example |
+|-----------|------------|---------|
+| **Model** | Data class | Game.cs - represents a game |
+| **View** | HTML template | Index.cshtml - shows games |
+| **Controller** | Request handler | GameController.cs - coordinates |
 
-## ??? MVC Quick Definitions
-
-| Component | What It Is | Example in This App |
-|-----------|------------|-------------------|
-| **Model** | A class that represents data | `Game.cs` - represents a game with Title, Platform, etc. |
-| **View** | HTML template that displays data | `Index.cshtml` - shows the list of games |
-| **Controller** | Handles requests and coordinates | `GameController.cs` - decides what to show |
-
----
-
-## ?? Common MVC Flow
+## Common MVC Flow
 
 ```
 User clicks button
-    ?
-Browser sends request to URL
-    ?
-Controller receives request
-    ?
-Controller gets/modifies data (using Service/Model)
-    ?
-Controller passes data to View
-    ?
-View generates HTML
-    ?
-Browser displays HTML to user
+? Browser sends request
+? Controller receives request
+? Controller gets/modifies data
+? Controller passes data to View
+? View generates HTML
+? Browser displays to user
 ```
 
----
+## File Locations
 
-## ?? File Locations
+| What | Where |
+|------|-------|
+| Models | Models/Game.cs |
+| Controllers | Controllers/GameController.cs |
+| Views | Views/Game/Index.cshtml |
+| Layout | Views/Shared/_Layout.cshtml |
+| Services | Services/GameService.cs |
+| Startup | Program.cs |
 
-| What | Where to Find It |
-|------|-----------------|
-| Models | `Models/Game.cs` |
-| Controllers | `Controllers/GameController.cs` |
-| Views | `Views/Game/Index.cshtml`, `Create.cshtml`, etc. |
-| Layout | `Views/Shared/_Layout.cshtml` |
-| Services | `Services/GameService.cs` |
-| Startup | `Program.cs` |
+## Razor Syntax
 
----
-
-## ?? Razor Syntax Cheatsheet
-
-| Syntax | What It Does | Example |
-|--------|-------------|---------|
-| `@` | Write C# code | `@DateTime.Now` |
-| `@{ }` | Code block | `@{ var name = "Test"; }` |
+| Syntax | Purpose | Example |
+|--------|---------|---------|
+| `@` | Write C# | `@DateTime.Now` |
+| `@{ }` | Code block | `@{ var x = 5; }` |
 | `@if` | Conditional | `@if (game.IsCompleted) { }` |
-| `@foreach` | Loop | `@foreach (var game in Model) { }` |
-| `@model` | Declare view model type | `@model List<Game>` |
-| `@Model` | Access the model data | `@Model.Count` |
-| `asp-action` | Link to controller action | `asp-action="Create"` |
-| `asp-controller` | Specify controller | `asp-controller="Game"` |
-| `asp-route-id` | Pass parameter | `asp-route-id="@game.Id"` |
-| `asp-for` | Bind to model property | `asp-for="Title"` |
+| `@foreach` | Loop | `@foreach (var g in Model) { }` |
+| `@model` | Declare type | `@model List<Game>` |
+| `@Model` | Access data | `@Model.Count` |
+| `asp-action` | Link to action | `asp-action="Create"` |
+| `asp-for` | Bind property | `asp-for="Title"` |
 
----
+## URL Routing
 
-## ?? URL Routing Pattern
-
-```
-/{Controller}/{Action}/{id?}
-```
+Pattern: `/{Controller}/{Action}/{id?}`
 
 | URL | Controller | Action | ID |
 |-----|-----------|--------|-----|
-| `/Game/Index` | GameController | Index() | - |
-| `/Game/Create` | GameController | Create() | - |
-| `/Game/Edit/5` | GameController | Edit() | 5 |
-| `/Game/Delete/3` | GameController | Delete() | 3 |
+| /Game/Index | GameController | Index() | - |
+| /Game/Create | GameController | Create() | - |
+| /Game/Edit/5 | GameController | Edit() | 5 |
 
----
+## Common LINQ Methods
 
-## ?? Common C# LINQ Methods
-
-| Method | What It Does | Example |
-|--------|-------------|---------|
+| Method | Purpose | Example |
+|--------|---------|---------|
 | `.Count()` | Count items | `games.Count()` |
-| `.Where()` | Filter items | `games.Where(g => g.IsCompleted)` |
-| `.OrderBy()` | Sort ascending | `games.OrderBy(g => g.Title)` |
-| `.OrderByDescending()` | Sort descending | `games.OrderByDescending(g => g.DateAdded)` |
+| `.Where()` | Filter | `games.Where(g => g.IsCompleted)` |
+| `.OrderBy()` | Sort up | `games.OrderBy(g => g.Title)` |
+| `.OrderByDescending()` | Sort down | `games.OrderByDescending(g => g.DateAdded)` |
 | `.FirstOrDefault()` | Get first or null | `games.FirstOrDefault(g => g.Id == 5)` |
-| `.Take()` | Get first N items | `games.Take(3)` |
-| `.GroupBy()` | Group by property | `games.GroupBy(g => g.Platform)` |
+| `.Take()` | Get first N | `games.Take(3)` |
 
----
+## Bootstrap Quick Reference
 
-## ?? Bootstrap Quick Reference
-
-### Grid System
+### Grid
 ```html
 <div class="container">
     <div class="row">
-        <div class="col-md-6">Half width</div>
-        <div class="col-md-6">Half width</div>
+        <div class="col-md-6">Half</div>
+        <div class="col-md-6">Half</div>
     </div>
 </div>
 ```
 
-### Common Components
-| Component | Class | Example |
-|-----------|-------|---------|
-| Button | `btn btn-primary` | `<a class="btn btn-primary">Click</a>` |
-| Card | `card` | `<div class="card"><div class="card-body">...</div></div>` |
-| Badge | `badge bg-success` | `<span class="badge bg-success">New</span>` |
-| Alert | `alert alert-info` | `<div class="alert alert-info">Message</div>` |
-| Table | `table table-striped` | `<table class="table">...</table>` |
+### Common Classes
+- Button: `btn btn-primary`
+- Card: `card` + `card-body`
+- Badge: `badge bg-success`
+- Table: `table table-striped`
+- Alert: `alert alert-info`
 
-### Color Classes
-- `btn-primary` / `bg-primary` - Blue
-- `btn-success` / `bg-success` - Green
-- `btn-danger` / `bg-danger` - Red
-- `btn-warning` / `bg-warning` - Yellow
-- `btn-secondary` / `bg-secondary` - Gray
-- `btn-info` / `bg-info` - Light blue
+### Colors
+- Blue: `btn-primary` / `bg-primary`
+- Green: `btn-success` / `bg-success`
+- Red: `btn-danger` / `bg-danger`
+- Yellow: `btn-warning` / `bg-warning`
 
----
+## Debugging Tips
 
-## ?? Debugging Tips
+| Problem | Check |
+|---------|-------|
+| Page not found | URL matches controller/action name |
+| Null reference | Data exists before using |
+| Form not submitting | Form has method="post" and asp-action |
+| Changes not showing | Saved all files and restarted app |
+| Model error | @model matches controller data type |
 
-| Problem | What to Check |
-|---------|--------------|
-| Page not found (404) | Check URL matches controller/action name |
-| Null reference error | Check if data exists before using it (`if (game != null)`) |
-| Form not submitting | Check form has `method="post"` and `asp-action` |
-| Changes not showing | Save all files (Ctrl+Shift+S) and restart app |
-| Model error | Check `@model` in view matches controller's data type |
+## Visual Studio Shortcuts
 
----
+| Shortcut | Action |
+|----------|--------|
+| F5 | Run/Debug |
+| Shift+F5 | Stop |
+| Ctrl+S | Save file |
+| Ctrl+Shift+S | Save all |
+| F12 | Go to definition |
+| Ctrl+. | Quick actions |
+| Ctrl+F | Find |
 
-## ?? Useful Keyboard Shortcuts
-
-| Shortcut | What It Does |
-|----------|-------------|
-| `F5` | Run/Debug the app |
-| `Shift+F5` | Stop the app |
-| `Ctrl+S` | Save current file |
-| `Ctrl+Shift+S` | Save all files |
-| `Ctrl+K, Ctrl+C` | Comment code |
-| `Ctrl+K, Ctrl+U` | Uncomment code |
-| `F12` | Go to definition |
-| `Ctrl+.` | Quick actions (add using, etc.) |
-| `Ctrl+F` | Find in current file |
-| `Ctrl+Shift+F` | Find in all files |
-
----
-
-## ?? Common Data Annotations
-
-Add these to Model properties for validation:
+## Data Annotations
 
 ```csharp
-[Required]  // Field must have a value
+[Required]  // Must have value
 public string Title { get; set; }
 
-[MaxLength(100)]  // Maximum 100 characters
+[MaxLength(100)]  // Max 100 characters
 public string Title { get; set; }
 
-[Range(1, 5)]  // Value must be between 1 and 5
+[Range(1, 5)]  // Between 1 and 5
 public int Rating { get; set; }
 
-[Display(Name = "Game Title")]  // Friendly name in forms
+[Display(Name = "Game Title")]  // Friendly name
 public string Title { get; set; }
-
-[DataType(DataType.Date)]  // Show as date picker
-public DateTime DateAdded { get; set; }
 ```
 
----
+## Adding a New Property
 
-## ?? How to Add a New Property
-
-**Example: Adding a "Publisher" field**
-
-1. **Update Model** (`Models/Game.cs`)
+1. Update Model (Models/Game.cs)
 ```csharp
 public string Publisher { get; set; } = string.Empty;
 ```
 
-2. **Update Create View** (`Views/Game/Create.cshtml`)
+2. Update Create View (Views/Game/Create.cshtml)
 ```html
 <div class="mb-3">
-    <label asp-for="Publisher" class="form-label">Publisher</label>
+    <label asp-for="Publisher">Publisher</label>
     <input asp-for="Publisher" class="form-control" />
 </div>
 ```
 
-3. **Update Edit View** (`Views/Game/Edit.cshtml`)
+3. Update Edit View (Views/Game/Edit.cshtml) - same as above
+
+4. Update Index View (Views/Game/Index.cshtml)
 ```html
-<div class="mb-3">
-    <label asp-for="Publisher" class="form-label">Publisher</label>
-    <input asp-for="Publisher" class="form-control" />
-</div>
+<th>Publisher</th>  <!-- in header -->
+<td>@game.Publisher</td>  <!-- in body -->
 ```
 
-4. **Update Index View** (`Views/Game/Index.cshtml`)
-```html
-<!-- Add to table header -->
-<th>Publisher</th>
-
-<!-- Add to table body loop -->
-<td>@game.Publisher</td>
-```
-
-5. **Update Sample Data** (`Services/GameService.cs`)
+5. Update Sample Data (Services/GameService.cs)
 ```csharp
 Publisher = "Nintendo",
 ```
 
-6. **Test!** Run the app and try adding/editing games
+## When Stuck
 
----
+1. Read error message carefully
+2. Check if files are saved
+3. Restart the app
+4. Use breakpoints
+5. Google the error
+6. Ask your mentor
 
-## ?? When You're Stuck
+## Remember
 
-1. **Read the error message carefully** - it usually tells you what's wrong!
-2. **Check if you saved all files**
-3. **Restart the application**
-4. **Use breakpoints** (click left margin in code) to see what's happening
-5. **Google the error** - someone has probably had the same issue
-6. **Ask your mentor** - that's what they're there for!
-
----
-
-## ?? Remember
-
-- **Mistakes are how we learn** - don't be afraid to break things!
-- **Google is your friend** - all developers use it constantly
-- **Take breaks** - sometimes walking away helps you see the solution
-- **Have fun!** - You're building something real!
-
----
-
-**Keep this reference handy and happy coding! ??**
+- Mistakes help you learn
+- Google is your friend
+- Take breaks
+- Have fun!

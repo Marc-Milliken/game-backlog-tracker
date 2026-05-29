@@ -1,4 +1,4 @@
-# ?? Game Backlog Tracker
+# Game Backlog Tracker
 
 A simple ASP.NET Core MVC web application for tracking your gaming backlog!
 
@@ -6,51 +6,51 @@ This project was created as an educational introduction to web development with 
 
 ---
 
-## ?? What is MVC?
+## What is MVC?
 
-**MVC** stands for **Model-View-Controller**. It's a design pattern that helps organize web applications into three main parts:
+**MVC** stands for **Model-View-Controller**. It is a design pattern that helps organize web applications into three main parts:
 
-### ??? **Model** (The Data)
+### Model (The Data)
 - **What it is:** Models are classes that represent your data
 - **Example:** The `Game.cs` class represents a single game with properties like Title, Platform, Genre, etc.
-- **Think of it as:** The "thing" you're working with (like a game, a user, a product, etc.)
+- **Think of it as:** The thing you are working with (like a game, a user, a product, etc.)
 - **Location:** `Models/Game.cs`
 
-### ?? **Controller** (The Traffic Director)
+### Controller (The Traffic Director)
 - **What it is:** Controllers handle requests from users and decide what to do
 - **Example:** The `GameController.cs` has methods like `Index()`, `Create()`, `Edit()`, `Delete()`
-- **Think of it as:** The "brain" that decides what happens when you click a button or visit a page
+- **Think of it as:** The brain that decides what happens when you click a button or visit a page
 - **Location:** `Controllers/GameController.cs`
 
-### ??? **View** (The Display)
+### View (The Display)
 - **What it is:** Views are the HTML pages that users see and interact with
 - **Example:** `Index.cshtml` shows the list of games, `Create.cshtml` shows the form to add a game
-- **Think of it as:** The "face" of your application that users interact with
+- **Think of it as:** The face of your application that users interact with
 - **Location:** `Views/Game/Index.cshtml`, `Views/Game/Create.cshtml`, etc.
 
 ---
 
-## ?? How Data Flows in This App
+## How Data Flows in This App
 
-Here's what happens when you add a new game:
+Here is what happens when you add a new game:
 
-1. **User visits** `/Game/Create` ? Browser sends a GET request
-2. **Controller** (`GameController.Create()` GET method) ? Returns the empty form
-3. **View** (`Create.cshtml`) ? Displays the form to the user
-4. **User fills in** the form and clicks "Save" ? Browser sends a POST request with the form data
-5. **Controller** (`GameController.Create()` POST method) ? Receives the data
-6. **Service** (`GameService.AddGame()`) ? Saves the game to the in-memory list
+1. **User visits** `/Game/Create` - Browser sends a GET request
+2. **Controller** (`GameController.Create()` GET method) - Returns the empty form
+3. **View** (`Create.cshtml`) - Displays the form to the user
+4. **User fills in** the form and clicks Save - Browser sends a POST request with the form data
+5. **Controller** (`GameController.Create()` POST method) - Receives the data
+6. **Service** (`GameService.AddGame()`) - Saves the game to the in-memory list
 7. **Controller** redirects to `/Game/Index`
-8. **Controller** (`GameController.Index()`) ? Gets all games from the service
-9. **View** (`Index.cshtml`) ? Displays the updated list including the new game
+8. **Controller** (`GameController.Index()`) - Gets all games from the service
+9. **View** (`Index.cshtml`) - Displays the updated list including the new game
 
 ---
 
-## ?? How to Run the Application
+## How to Run the Application
 
 ### Option 1: Using Visual Studio
 1. Open `GameTracker.sln` in Visual Studio
-2. Press **F5** or click the **? Run** button
+2. Press **F5** or click the **Run** button
 3. Your browser will open automatically showing the app
 
 ### Option 2: Using the Command Line
@@ -61,63 +61,56 @@ Here's what happens when you add a new game:
 
 ---
 
-## ?? Project Structure
+## Project Structure
 
 ```
 GameTracker/
-?
 ??? Controllers/
-?   ??? GameController.cs       ? Handles all game-related requests
-?   ??? HomeController.cs       ? Handles home page
-?
+?   ??? GameController.cs       <- Handles all game-related requests
+?   ??? HomeController.cs       <- Handles home page
 ??? Models/
-?   ??? Game.cs                 ? Represents a single game
-?   ??? ErrorViewModel.cs       ? For error pages
-?
+?   ??? Game.cs                 <- Represents a single game
+?   ??? ErrorViewModel.cs       <- For error pages
 ??? Services/
-?   ??? GameService.cs          ? Manages game data (in-memory storage)
-?
+?   ??? GameService.cs          <- Manages game data (in-memory storage)
 ??? Views/
 ?   ??? Game/
-?   ?   ??? Index.cshtml        ? Shows list of all games
-?   ?   ??? Create.cshtml       ? Form to add a new game
-?   ?   ??? Edit.cshtml         ? Form to edit a game
-?   ?   ??? Delete.cshtml       ? Confirmation before deleting
-?   ?
+?   ?   ??? Index.cshtml        <- Shows list of all games
+?   ?   ??? Create.cshtml       <- Form to add a new game
+?   ?   ??? Edit.cshtml         <- Form to edit a game
+?   ?   ??? Delete.cshtml       <- Confirmation before deleting
 ?   ??? Home/
-?   ?   ??? Index.cshtml        ? Home page
-?   ?   ??? Privacy.cshtml      ? Privacy page
-?   ?
+?   ?   ??? Index.cshtml        <- Home page
+?   ?   ??? Privacy.cshtml      <- Privacy page
 ?   ??? Shared/
-?       ??? _Layout.cshtml      ? Main layout template (header, footer, navigation)
-?       ??? Error.cshtml        ? Error page
-?
-??? Program.cs                  ? Application startup and configuration
+?       ??? _Layout.cshtml      <- Main layout template (header, footer, navigation)
+?       ??? Error.cshtml        <- Error page
+??? Program.cs                  <- Application startup and configuration
 ```
 
 ---
 
-## ?? Features You Can Try
+## Features You Can Try
 
-- ? **View all games** - See your complete backlog
-- ? **Add a game** - Add new games you want to play
-- ? **Edit a game** - Update game details
-- ? **Delete a game** - Remove games from your backlog
-- ? **Mark as completed** - Track which games you've finished
-- ? **View statistics** - See total, completed, and remaining games
+- **View all games** - See your complete backlog
+- **Add a game** - Add new games you want to play
+- **Edit a game** - Update game details
+- **Delete a game** - Remove games from your backlog
+- **Mark as completed** - Track which games you have finished
+- **View statistics** - See total, completed, and remaining games
 
 ---
 
-## ?? Beginner-Friendly Tasks to Try
+## Beginner-Friendly Tasks to Try
 
 Here are some ideas for features you could add to practice your skills:
 
-### ?? Easy Tasks (Great for starting!)
+### Easy Tasks (Great for starting!)
 
 1. **Add a Rating System**
    - Add a `Rating` property to the `Game` model (1-5 stars)
    - Update the views to show and edit ratings
-   - Display ratings with star icons ?
+   - Display ratings with star icons
 
 2. **Sort the Game List**
    - Add buttons to sort by Title, Platform, or Date Added
@@ -130,7 +123,7 @@ Here are some ideas for features you could add to practice your skills:
 4. **Add More Sample Games**
    - Edit `GameService.cs` constructor to add more games you like
 
-### ?? Intermediate Tasks (More challenging!)
+### Intermediate Tasks (More challenging!)
 
 5. **Add a Search Feature**
    - Add a search box above the game list
@@ -138,12 +131,11 @@ Here are some ideas for features you could add to practice your skills:
    - Hint: Use `Where()` to filter the list
 
 6. **Filter by Status**
-   - Add buttons: "Show All", "Show Completed", "Show Not Started"
+   - Add buttons: Show All, Show Completed, Show Not Started
    - Filter the games based on the `IsCompleted` property
 
 7. **Add Platform Icons**
    - Show different emojis/icons for different platforms
-   - PC: ???, PlayStation: ??, Xbox: ??, Nintendo: ??
 
 8. **Add Input Validation**
    - Make Title, Platform, and Genre required fields
@@ -154,9 +146,9 @@ Here are some ideas for features you could add to practice your skills:
    - Add a new statistics card showing how many games per platform
    - Hint: Use `.GroupBy(g => g.Platform)`
 
-### ?? Advanced Tasks (Challenge yourself!)
+### Advanced Tasks (Challenge yourself!)
 
-10. **Add a "Recently Added" Section**
+10. **Add a Recently Added Section**
     - Show the 3 most recently added games on the home page
     - Use `.OrderByDescending(g => g.DateAdded).Take(3)`
 
@@ -179,17 +171,17 @@ Here are some ideas for features you could add to practice your skills:
 
 ---
 
-## ?? Learning Tips
+## Learning Tips
 
 1. **Make small changes** - Change one thing at a time and test it
 2. **Read the comments** - The code is heavily commented to help you understand
-3. **Break things!** - Don't be afraid to experiment. You can always undo changes
-4. **Use the error messages** - They usually tell you exactly what's wrong
-5. **Google is your friend** - Search for "ASP.NET Core MVC [what you want to do]"
+3. **Break things!** - Do not be afraid to experiment. You can always undo changes
+4. **Use the error messages** - They usually tell you exactly what is wrong
+5. **Google is your friend** - Search for "ASP.NET Core MVC" plus what you want to do
 
 ---
 
-## ?? Common Issues and Solutions
+## Common Issues and Solutions
 
 ### The app shows old data after I restart
 - **Why?** Data is stored in memory, so it resets when the app stops
@@ -198,15 +190,15 @@ Here are some ideas for features you could add to practice your skills:
 ### I changed the code but nothing happened
 - **Solution:** Stop the app (Shift+F5) and run it again (F5)
 
-### I get an error about "Model"
+### I get an error about Model
 - **Solution:** Make sure your view has the correct `@model` directive at the top
 
-### Changes to CSS aren't showing
+### Changes to CSS are not showing
 - **Solution:** Try hard-refreshing the browser (Ctrl+F5 or Cmd+Shift+R)
 
 ---
 
-## ?? What to Learn Next
+## What to Learn Next
 
 After mastering this project, you could explore:
 
@@ -218,26 +210,26 @@ After mastering this project, you could explore:
 
 ---
 
-## ?? Resources for Learning More
+## Resources for Learning More
 
-- [Microsoft's ASP.NET Core Tutorial](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc)
+- [Microsoft ASP.NET Core Tutorial](https://learn.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc)
 - [W3Schools C# Tutorial](https://www.w3schools.com/cs/)
-- [Bootstrap Documentation](https://getbootstrap.com/docs/) - for styling
-- [Stack Overflow](https://stackoverflow.com/) - for when you get stuck
+- [Bootstrap Documentation](https://getbootstrap.com/docs/)
+- [Stack Overflow](https://stackoverflow.com/)
 
 ---
 
-## ?? Congratulations!
+## Congratulations!
 
 You now have a working web application! Feel free to customize it, break it, fix it, and make it your own. 
 
 The best way to learn programming is by **doing** - so pick a task from the list above and give it a try!
 
-**Happy Coding! ??**
+**Happy Coding!**
 
 ---
 
-## ?? Notes for Teachers/Mentors
+## Notes for Teachers/Mentors
 
 This project intentionally avoids:
 - Repository pattern
