@@ -1,4 +1,8 @@
 using System.Diagnostics.Eventing.Reader;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace GameTracker.Models
 {
@@ -12,12 +16,16 @@ namespace GameTracker.Models
 
         // The name of the game (e.g., "The Legend of Zelda")
         public string Title { get; set; } = string.Empty;
+        [StringLength(100, MinimumLength = 1)]
+        [Required]
 
         // What platform the game is on (e.g., "Nintendo Switch", "PC", "PlayStation 5")
         public string Platform { get; set; } = string.Empty;
+        [Required]
 
         // What type of game it is (e.g., "RPG", "Action", "Puzzle")
         public string Genre { get; set; } = string.Empty;
+        [Required]
 
         // What is the rating of the game? (1-5 stars)
         public string Rating { get; set; } = string.Empty;
