@@ -1,3 +1,5 @@
+using System.Diagnostics.Eventing.Reader;
+
 namespace GameTracker.Models
 {
     // This is a MODEL - it represents a single game in our backlog
@@ -16,6 +18,9 @@ namespace GameTracker.Models
 
         // What type of game it is (e.g., "RPG", "Action", "Puzzle")
         public string Genre { get; set; } = string.Empty;
+
+        // What is the rating of the game? (1-5 stars)
+        public string Rating { get; set; } = string.Empty;
 
         // Has the game been completed? true = yes, false = no
         public bool IsCompleted { get; set; }

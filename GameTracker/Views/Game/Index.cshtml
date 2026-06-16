@@ -3,9 +3,8 @@
     VIEWS are HTML templates that show information to the user
     The @ symbol lets us write C# code inside HTML
 *@
-
 @model List<GameTracker.Models.Game>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 @* 
     @model tells us what type of data this view expects
     In this case, we expect a List of Game objects from the controller
@@ -27,6 +26,15 @@
         </a>
     </div>
 </div>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <label>Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /></label>
+            <input type="submit" value="Search" class="btn btn-default" /> 
+        </p>
+    </div>
+</form>
 
 @* Show statistics about the games *@
 <div class="row mb-4">
@@ -56,6 +64,54 @@
     </div>
 </div>
 
+<div class="row mb-3">
+    <div class="col-md-2">
+        <h4>Sort By...</h4>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="SortByTitle" class="btn btn-primary">
+            Title
+        </a>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="SortByPlatform" class="btn btn-primary">
+            Platform
+        </a>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="SortByDate" class="btn btn-primary">
+            Date Added
+        </a>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-2">
+        <h4>Status</h4>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="AllGames" class="btn btn-primary">
+            All 
+        </a>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="CompletedGames" class="btn btn-primary">
+            Completed
+        </a>
+    </div>
+    <div class="col-md-1 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="NotStartedGames" class="btn btn-primary">
+            Not Started
+        </a>
+    </div>
+</div>
+
 @* Check if there are any games to display *@
 @if (Model.Count == 0)
 {
@@ -75,6 +131,7 @@ else
                     <th>Platform</th>
                     <th>Genre</th>
                     <th>Status</th>
+                    <th>Rating</th>
                     <th>Date Added</th>
                     <th>Actions</th>
                 </tr>
@@ -94,13 +151,73 @@ else
                         <td>
                             @if (game.IsCompleted)
                             {
-                                <span class="badge bg-success">? Completed</span>
+                                <span class="badge bg-info">? Completed</span>
                             }
                             else
                             {
-                                <span class="badge bg-warning text-dark">? Not Started</span>
+                                <span class="badge bg-danger text-dark">? Not Started</span>
                             }
                         </td>
+                        @if (game.Rating == "1")
+                        {
+                            <td>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </td>
+                        }
+                        else if (game.Rating == "2")
+                        {
+                            <td>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </td>
+                        }
+                        else if (game.Rating == "3")
+                        {
+                            <td>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </td>
+                        }
+                        else if (game.Rating == "4")
+                        {
+                            <td>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                            </td>
+                        }
+                        else if (game.Rating == "5")
+                        {
+                            <td>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </td>
+                        }
+                        else if (game.Rating == "0")
+                        {
+                            <td>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </td>
+                        }
                         <td>@game.DateAdded.ToString("MMM dd, yyyy")</td>
                         <td>
                             @* Action buttons for each game *@

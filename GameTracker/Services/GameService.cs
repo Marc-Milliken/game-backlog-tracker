@@ -26,6 +26,7 @@ namespace GameTracker.Services
                     Title = "The Legend of Zelda: Breath of the Wild",
                     Platform = "Nintendo Switch",
                     Genre = "Action-Adventure",
+                    Rating = "5",
                     IsCompleted = true,
                     DateAdded = DateTime.Now.AddDays(-30)
                 });
@@ -36,6 +37,7 @@ namespace GameTracker.Services
                     Title = "Elden Ring",
                     Platform = "PC",
                     Genre = "Action RPG",
+                    Rating = "3",
                     IsCompleted = false,
                     DateAdded = DateTime.Now.AddDays(-15)
                 });
@@ -46,6 +48,7 @@ namespace GameTracker.Services
                     Title = "Stardew Valley",
                     Platform = "PC",
                     Genre = "Simulation",
+                    Rating = "2",
                     IsCompleted = false,
                     DateAdded = DateTime.Now.AddDays(-7)
                 });
@@ -56,6 +59,7 @@ namespace GameTracker.Services
                     Title = "Hades",
                     Platform = "PlayStation 5",
                     Genre = "Roguelike",
+                    Rating = "4",
                     IsCompleted = true,
                     DateAdded = DateTime.Now.AddDays(-45)
                 });
@@ -66,6 +70,29 @@ namespace GameTracker.Services
                     Title = "Minecraft",
                     Platform = "Multi-platform",
                     Genre = "Sandbox",
+                    Rating = "1",
+                    IsCompleted = false,
+                    DateAdded = DateTime.Now.AddDays(-60)
+                });
+                
+                _games.Add(new Game
+                {
+                    Id = _nextId++,
+                    Title = "Fortnite",
+                    Platform = "Multi-platform",
+                    Genre = "Battle Royale",
+                    Rating = "4",
+                    IsCompleted = false,
+                    DateAdded = DateTime.Now.AddDays(-60)
+                });
+
+                _games.Add(new Game
+                {
+                    Id = _nextId++,
+                    Title = "Counter Strike 2",
+                    Platform = "PC",
+                    Genre = "Shooter",
+                    Rating = "2",
                     IsCompleted = false,
                     DateAdded = DateTime.Now.AddDays(-60)
                 });
@@ -105,6 +132,7 @@ namespace GameTracker.Services
                 existingGame.Title = updatedGame.Title;
                 existingGame.Platform = updatedGame.Platform;
                 existingGame.Genre = updatedGame.Genre;
+                existingGame.Rating = updatedGame.Rating;
                 existingGame.IsCompleted = updatedGame.IsCompleted;
                 // Note: We keep the original DateAdded
             }

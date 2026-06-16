@@ -1,6 +1,7 @@
 using GameTracker.Models;
 using GameTracker.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq; // add if not already present
 
 namespace GameTracker.Controllers
 {
@@ -32,6 +33,61 @@ namespace GameTracker.Controllers
             return View(games);
         }
 
+        public IActionResult SortByTitle(string direction = "asc")
+        { 
+            var games = _gameService.GetAllGames();
+
+           
+            var ordered = direction?.ToLower() == "desc"
+                ? games.OrderByDescending(g => g.Title)
+                : games.OrderBy(g => g.Title);
+
+            return View("Index", ordered.ToList());
+        }
+
+        public IActionResult SortByPlatform(string direction = "asc")
+        {
+            var games = _gameService.GetAllGames();
+
+
+            var ordered = direction?.ToLower() == "desc"
+                ? games.OrderByDescending(g => g.Platform)
+                : games.OrderBy(g => g.Platform);
+
+            return View("Index", ordered.ToList());
+        }
+
+        public IActionResult SortByDate(string direction = "asc")
+        {
+            var games = _gameService.GetAllGames();
+
+
+            var ordered = direction?.ToLower() == "desc"
+                ? games.OrderByDescending(g => g.DateAdded)
+                : games.OrderBy(g => g.DateAdded);
+
+            return View("Index", ordered.ToList());
+        }
+
+        public IActionResult AllGames()
+        {
+            var games = _gameService.GetAllGames();
+
+            return View("Index", games.ToList());
+        }
+
+        public IActionResult CompletedGames()
+        {
+            var games = _gameService.GetAllGames();
+            IEnumerable<Game> query = games.Where(g => g.IsCompleted);
+            return View("Index", query.ToList());
+        }
+        public IActionResult NotStartedGames()
+        {
+            var games = _gameService.GetAllGames();
+            IEnumerable<Game> query = games.Where(g => !g.IsCompleted);
+            return View("Index", query.ToList());
+        }
         // ACTION: Show the form to create a new game
         // URL: /Game/Create
         // This is a GET request - it just shows the empty form
