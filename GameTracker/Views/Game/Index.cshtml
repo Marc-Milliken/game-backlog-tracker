@@ -144,7 +144,41 @@ else
                         <td>
                             <strong>@game.Title</strong>
                         </td>
-                        <td>@game.Platform</td>
+                        @if (game.Platform == "PC")
+                        {
+                            <td>
+                                <i class="bi bi-pc-display-horizontal"></i>
+                            </td>
+                        }
+                        else if (game.Platform =="PlayStation 5")
+                        {
+                            <td>
+                                <i class="bi bi-playstation"></i>
+                            </td>
+                        }
+                        else if (game.Platform == "Xbox")
+                        {
+                            <td>
+                                <i class="bi bi-xbox"></i>
+                            </td>
+                        }
+                        else if (game.Platform == "Nintendo Switch")
+                        {
+                            <td>
+                                <i class="bi bi-nintendo-switch"></i>
+                            </td>
+                            
+                        }
+                        else if (game.Platform == "Multi-platform")
+                        {
+                            <td>
+
+                            <i class="bi bi-pc-display-horizontal"></i>
+                            <i class="bi bi-playstation"></i>
+                            <i class="bi bi-xbox"></i>
+                            <i class="bi bi-nintendo-switch"></i>
+                            </td>
+                        }
                         <td>
                             <span class="badge bg-secondary">@game.Genre</span>
                         </td>
