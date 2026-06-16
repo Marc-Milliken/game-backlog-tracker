@@ -15,19 +15,23 @@ namespace GameTracker.Models
         public int Id { get; set; }
 
         // The name of the game (e.g., "The Legend of Zelda")
-        public string Title { get; set; } = string.Empty;
         [StringLength(100, MinimumLength = 1)]
-        [Required]
+        [Required(ErrorMessage = "Title is required.")]
+        public string Title { get; set; } = string.Empty;
+
 
         // What platform the game is on (e.g., "Nintendo Switch", "PC", "PlayStation 5")
+        [Required(ErrorMessage = "Platform is required.")]
         public string Platform { get; set; } = string.Empty;
-        [Required]
+
 
         // What type of game it is (e.g., "RPG", "Action", "Puzzle")
+        [Required(ErrorMessage = "Genre is required.")]
         public string Genre { get; set; } = string.Empty;
-        [Required]
+
 
         // What is the rating of the game? (1-5 stars)
+        [Required(ErrorMessage = "Rating is required.")]
         public string Rating { get; set; } = string.Empty;
 
         // Has the game been completed? true = yes, false = no
