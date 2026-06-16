@@ -10,8 +10,11 @@
     In this case, we expect a List of Game objects from the controller
 *@
 
+@using System.Linq
+
 @{
     ViewData["Title"] = "My Game Backlog";
+    var grouped = Model?.GroupBy(g => g.Platform).ToDictionary(g => g.Key, g => g.Count());
 }
 
 <div class="row mb-3">
@@ -60,6 +63,21 @@
                 <h3>@Model.Count(g => !g.IsCompleted)</h3>
                 <p class="text-muted mb-0">Still to Play</p>
             </div>
+        </div>
+    </div>
+    @foreach (var g in grouped)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    
+                    <h3>
+                        @g.Value
+                    </h3>
+
+
+                    <p class="text-muted mb-0">@g.Key</p>
+                </div>
         </div>
     </div>
 </div>
