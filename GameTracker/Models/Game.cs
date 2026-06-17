@@ -29,6 +29,9 @@ namespace GameTracker.Models
         [Required(ErrorMessage = "Genre is required.")]
         public string Genre { get; set; } = string.Empty;
 
+        // How many hours will it take to complete?
+        public int HoursToComplete { get; set; }
+
 
         // What is the rating of the game? (1-5 stars)
         [Required(ErrorMessage = "Rating is required.")]

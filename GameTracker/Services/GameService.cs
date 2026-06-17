@@ -26,6 +26,7 @@ namespace GameTracker.Services
                     Title = "The Legend of Zelda: Breath of the Wild",
                     Platform = "Nintendo Switch",
                     Genre = "Action-Adventure",
+                    HoursToComplete=93,
                     Rating = "5",
                     IsCompleted = true,
                     DateAdded = DateTime.Now.AddDays(-30)
@@ -36,6 +37,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Elden Ring",
                     Platform = "PC",
+                    HoursToComplete = 105,
                     Genre = "Action RPG",
                     Rating = "3",
                     IsCompleted = false,
@@ -47,6 +49,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Stardew Valley",
                     Platform = "PC",
+                    HoursToComplete = 100,
                     Genre = "Simulation",
                     Rating = "2",
                     IsCompleted = false,
@@ -58,6 +61,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Hades",
                     Platform = "PlayStation 5",
+                    HoursToComplete = 44,
                     Genre = "Roguelike",
                     Rating = "4",
                     IsCompleted = true,
@@ -69,6 +73,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Minecraft",
                     Platform = "Multi-platform",
+                    HoursToComplete = 66,
                     Genre = "Sandbox",
                     Rating = "1",
                     IsCompleted = false,
@@ -80,6 +85,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Fortnite",
                     Platform = "Multi-platform",
+                    HoursToComplete = 131,
                     Genre = "Battle Royale",
                     Rating = "4",
                     IsCompleted = false,
@@ -91,6 +97,7 @@ namespace GameTracker.Services
                     Id = _nextId++,
                     Title = "Counter Strike 2",
                     Platform = "PC",
+                    HoursToComplete = 738,
                     Genre = "Shooter",
                     Rating = "2",
                     IsCompleted = false,
@@ -131,6 +138,7 @@ namespace GameTracker.Services
                 // Update all the properties
                 existingGame.Title = updatedGame.Title;
                 existingGame.Platform = updatedGame.Platform;
+                existingGame.HoursToComplete = updatedGame.HoursToComplete;
                 existingGame.Genre = updatedGame.Genre;
                 existingGame.Rating = updatedGame.Rating;
                 existingGame.IsCompleted = updatedGame.IsCompleted;

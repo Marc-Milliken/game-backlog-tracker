@@ -38,6 +38,13 @@
                 <span asp-validation-for="Platform" class="text-danger"></span>
             </div>
 
+            @* Hours to complete field *@
+            <div class="mb-3">
+                <label asp-for="HoursToComplete" class="form-label">Hours To Complete</label>
+                <input asp-for="HoursToComplete" class="form-control" placeholder="e.g 15" />
+                <span asp-validation-for="HoursToComplete" class="text-danger"></span>
+            </div>
+
             @* Genre field *@
             <div class="mb-3">
                 <label asp-for="Genre" class="form-label">Genre</label>
