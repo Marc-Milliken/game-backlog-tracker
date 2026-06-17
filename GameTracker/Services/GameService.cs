@@ -1,4 +1,5 @@
 using GameTracker.Models;
+using static System.Net.WebRequestMethods;
 
 namespace GameTracker.Services
 {
@@ -9,7 +10,7 @@ namespace GameTracker.Services
     {
         // This is our "fake database" - just a list that stores all games
         private static List<Game> _games = new List<Game>();
-        
+
         // This keeps track of the next ID number to use
         private static int _nextId = 1;
 
@@ -29,7 +30,8 @@ namespace GameTracker.Services
                     HoursToComplete=93,
                     Rating = "5",
                     IsCompleted = true,
-                    DateAdded = DateTime.Now.AddDays(-30)
+                    DateAdded = DateTime.Now.AddDays(-30),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
                 });
 
                 _games.Add(new Game
@@ -41,7 +43,8 @@ namespace GameTracker.Services
                     Genre = "Action RPG",
                     Rating = "3",
                     IsCompleted = false,
-                    DateAdded = DateTime.Now.AddDays(-15)
+                    DateAdded = DateTime.Now.AddDays(-15),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Elden_Ring_Box_art.jpg/250px-Elden_Ring_Box_art.jpg"
                 });
 
                 _games.Add(new Game
@@ -53,7 +56,8 @@ namespace GameTracker.Services
                     Genre = "Simulation",
                     Rating = "2",
                     IsCompleted = false,
-                    DateAdded = DateTime.Now.AddDays(-7)
+                    DateAdded = DateTime.Now.AddDays(-7),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Logo_of_Stardew_Valley.png/250px-Logo_of_Stardew_Valley.png"
                 });
 
                 _games.Add(new Game
@@ -65,7 +69,8 @@ namespace GameTracker.Services
                     Genre = "Roguelike",
                     Rating = "4",
                     IsCompleted = true,
-                    DateAdded = DateTime.Now.AddDays(-45)
+                    DateAdded = DateTime.Now.AddDays(-45),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Hades_cover_art.jpg/250px-Hades_cover_art.jpg"
                 });
 
                 _games.Add(new Game
@@ -77,9 +82,10 @@ namespace GameTracker.Services
                     Genre = "Sandbox",
                     Rating = "1",
                     IsCompleted = false,
-                    DateAdded = DateTime.Now.AddDays(-60)
+                    DateAdded = DateTime.Now.AddDays(-60),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Minecraft_game_logo_2023.png/250px-Minecraft_game_logo_2023.png"
                 });
-                
+
                 _games.Add(new Game
                 {
                     Id = _nextId++,
@@ -89,7 +95,8 @@ namespace GameTracker.Services
                     Genre = "Battle Royale",
                     Rating = "4",
                     IsCompleted = false,
-                    DateAdded = DateTime.Now.AddDays(-60)
+                    DateAdded = DateTime.Now.AddDays(-60),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/FortniteLogo.svg/250px-FortniteLogo.svg.png"
                 });
 
                 _games.Add(new Game
@@ -101,7 +108,8 @@ namespace GameTracker.Services
                     Genre = "Shooter",
                     Rating = "2",
                     IsCompleted = false,
-                    DateAdded = DateTime.Now.AddDays(-60)
+                    DateAdded = DateTime.Now.AddDays(-60),
+                    Thumbnail = "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/CS2_Cover_Art.jpg/250px-CS2_Cover_Art.jpg"
                 });
             }
         }
@@ -111,7 +119,11 @@ namespace GameTracker.Services
         {
             return _games;
         }
-
+        public List<Game> recentlyAdded()
+        {
+            var recentlyAdded = _games.OrderBy(g => g.DateAdded).Take(3);
+            return (List<Game>)recentlyAdded;
+        }
         // Get just one game by its ID
         public Game? GetGameById(int id)
         {
@@ -132,7 +144,7 @@ namespace GameTracker.Services
         {
             // Find the old game in the list
             var existingGame = _games.FirstOrDefault(g => g.Id == updatedGame.Id);
-            
+
             if (existingGame != null)
             {
                 // Update all the properties
@@ -151,7 +163,7 @@ namespace GameTracker.Services
         {
             // Find the game
             var game = _games.FirstOrDefault(g => g.Id == id);
-            
+
             if (game != null)
             {
                 // Remove it from the list

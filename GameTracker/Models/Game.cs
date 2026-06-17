@@ -42,5 +42,7 @@ namespace GameTracker.Models
 
         // When was this game added to our backlog?
         public DateTime DateAdded { get; set; }
+
+        public string Thumbnail { get; set; } = string.Empty;
     }
 }

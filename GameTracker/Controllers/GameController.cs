@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq; // add if not already present
+using System.IO;
+using System.Text;
 
 namespace GameTracker.Controllers
 {
@@ -25,16 +27,22 @@ namespace GameTracker.Controllers
         // ACTION: Show the list of all games
         // URL: /Game/Index or just /Game
         // This is what happens when someone visits the games page
-        public IActionResult Index()
+        public IActionResult Index(string GenreFilter)
         {
             // Step 1: Get all games from the service
             var games = _gameService.GetAllGames();
-
+            if (!string.IsNullOrWhiteSpace(GenreFilter))
+            {
+                var query = games.Where(g => g.Genre == GenreFilter).ToList();
+                return View("Index", query);
+            }
+            
             // Step 2: Send the games to the View (the HTML page)
             // The View will display the games to the user
             return View(games);
         }
 
+        [HttpGet]
         public IActionResult SortByTitle(string direction = "asc")
         { 
             var games = _gameService.GetAllGames();
@@ -88,8 +96,15 @@ namespace GameTracker.Controllers
         public IActionResult  NotStartedGames()
         {
             var games = _gameService.GetAllGames();
-            IEnumerable<Game> query = games.Where(g => g.IsCompleted);
+            IEnumerable<Game> query = games.Where(g => !g.IsCompleted);
             return View("Index", query.ToList());
+        }
+
+        public IActionResult GenreGames(string GenreFilter)
+        {
+            var games = _gameService.GetAllGames();
+            var query = games.Where(g => g.Genre == GenreFilter).ToList();
+            return View("Index", query);
         }
 
         // ACTION: Show the form to create a new game
