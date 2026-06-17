@@ -85,8 +85,12 @@ namespace GameTracker.Controllers
             return View("Index", query.ToList());
         }
 
-
-
+        public IActionResult  NotStartedGames()
+        {
+            var games = _gameService.GetAllGames();
+            IEnumerable<Game> query = games.Where(g => g.IsCompleted);
+            return View("Index", query.ToList());
+        }
 
         // ACTION: Show the form to create a new game
         // URL: /Game/Create
