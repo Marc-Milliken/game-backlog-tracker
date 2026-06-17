@@ -149,7 +149,7 @@
 
 <form asp-action="Index" id="inputState" class="form-control" method="get">
     <div>
-        <select class="form-select">
+        <select class="form-select" name="GenreFilter">
             <option selected>Please Choose...</option>
             @foreach (var g in DropGenre)
             {
