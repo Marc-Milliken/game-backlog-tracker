@@ -119,11 +119,7 @@ namespace GameTracker.Services
         {
             return _games;
         }
-        public List<Game> recentlyAdded()
-        {
-            var recentlyAdded = _games.OrderBy(g => g.DateAdded).Take(3);
-            return (List<Game>)recentlyAdded;
-        }
+
         // Get just one game by its ID
         public Game? GetGameById(int id)
         {

@@ -1,15 +1,33 @@
-using System.Diagnostics;
 using GameTracker.Models;
+using GameTracker.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System;
+using System.Collections.Generic;
+using System.Linq; // add if not already present
+using System.IO;
+using System.Text;
 
 namespace GameTracker.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly GameService _gameService;
+
+        // CONSTRUCTOR - runs when the controller is created
+        // It receives the GameService so we can use it in our actions
+        public HomeController(GameService gameService)
         {
-            return View();
+            _gameService = gameService;
         }
+        public IActionResult Index(string direction = "desc")
+        {
+            var games = _gameService.GetAllGames();
+            var ordered = games.OrderByDescending(g => g.DateAdded).Take(3);
+            
+            return View("Index", ordered.ToList());
+        }
+
 
         public IActionResult Privacy()
         {
