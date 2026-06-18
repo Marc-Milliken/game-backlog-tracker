@@ -28,6 +28,12 @@
             Add New Game
         </a>
     </div>
+    <div class="col-md-12 text-end">
+        @* This creates a button that links to the Create page *@
+        <a asp-action="ExportToText" class="btn btn-primary">
+            Export to Text File
+        </a>
+    </div>
 </div>
 
 
@@ -35,8 +41,8 @@
     Posted by user7217806
     Retrieved 2026-06-16, License - CC BY-SA 4.0*@ 
 
-<form asp-controller="Game" asp-action="Search" method="post" class="d-flex mb-3">
-    @Html.TextBox("Search", null, new { @class = "form-control me-2", placeholder = "Search titles..." })
+<form asp-controller="Game" asp-action="Index" method="get" class="d-flex mb-3">
+    @Html.TextBox("searchString", null, new { @class = "form-control me-2", placeholder = "Search titles..." })
     <button type="submit" class="btn btn-secondary">Search</button>
 </form>
 
@@ -47,7 +53,7 @@
 
 *@
 <div class="row mb-3">
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="card">
             <div class="card-body text-center">
                 <h3>@Model.Count</h3>
@@ -55,7 +61,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="card">
             <div class="card-body text-center">
                 <h3>@Model.Count(g => g.IsCompleted)</h3>
@@ -63,7 +69,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="card">
             <div class="card-body text-center">
                 <h3>@Model.Count(g => !g.IsCompleted)</h3>
@@ -71,11 +77,19 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="card">
             <div class="card-body text-center">
-                <h3>@Model.Count(g => !g.IsCompleted)</h3>
-                <p class="text-muted mb-0">Still to Play</p>
+                <h3>@(Model?.Select(g => g.HoursToComplete).Sum() ?? 0)</h3>
+                <p class="text-muted mb-0">Total Hours</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3>@Math.Round((Model?.Select(g => g.HoursToComplete).Average() ?? 0))</h3>
+                <p class="text-muted mb-0">Avg Hours</p>
             </div>
         </div>
     </div>
@@ -155,7 +169,7 @@
             {
                 <option value="@g.Key">@g.Key</option>
             }
-        
+
         </select>
     </div>
     <div class="col-md-2">

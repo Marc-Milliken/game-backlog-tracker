@@ -70,7 +70,6 @@ else
                     <th>Status</th>
                     <th>Rating</th>
                     <th>Date Added</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -200,19 +199,7 @@ else
                             </td>
                         }
                         <td>@RecentlyAdded.DateAdded.ToString("MMM dd, yyyy")</td>
-                        <td>
-                            @* Action buttons for each game *@
-                            <a asp-action="Edit" asp-route-id="@RecentlyAdded.Id"
-                               class="btn btn-sm btn-outline-primary"
-                               title="Edit this game">
-                                Edit
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@RecentlyAdded.Id"
-                               class="btn btn-sm btn-outline-danger"
-                               title="Delete this game">
-                                Delete
-                            </a>
-                        </td>
+
                     </tr>
                 }
             </tbody>
