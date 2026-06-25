@@ -181,7 +181,8 @@ namespace GameTracker.Controllers
             if (ModelState.IsValid)
             {
                 // Step 2: Update the game using our service
-                _gameService.UpdateGame(game);
+                context.Games.Update(game);
+                context.SaveChanges();
 
                 // Step 3: Redirect back to the list page
                 return RedirectToAction("Index");
@@ -199,6 +200,11 @@ namespace GameTracker.Controllers
         {
             // Step 1: Find the game by its ID
             var game = _gameService.GetGameById(id);
+            if (game != null)
+            {
+                context.Games.Remove(game);
+                context.SaveChanges();
+            }
 
             // Step 2: If game doesn't exist, show error page
             if (game == null)

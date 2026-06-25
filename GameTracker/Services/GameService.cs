@@ -1,3 +1,4 @@
+using GameTracker.Data;
 using GameTracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.WebRequestMethods;
@@ -15,10 +16,13 @@ namespace GameTracker.Services
         // This keeps track of the next ID number to use
         private static int _nextId = 1;
 
+        private readonly GameContext _context;
+
         // CONSTRUCTOR - this runs once when the service is created
         // It adds some sample games so we have data to work with
-        public GameService()
+        public GameService(GameContext context)
         {
+            _context = context;
             // Only add sample data if the list is empty
             if (_games.Count == 0)
             {
@@ -125,7 +129,7 @@ namespace GameTracker.Services
         public Game? GetGameById(int id)
         {
             // Look through the list and find the game with matching ID
-            return _games.FirstOrDefault(g => g.Id == id);
+            return _context.Games.FirstOrDefault(g => g.Id == id);
         }
 
         // Add a new game to our list

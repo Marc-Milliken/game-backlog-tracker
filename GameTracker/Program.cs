@@ -16,7 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 // Register our GameService as a Singleton
 // Singleton means only ONE instance is created and shared by everyone
 // This keeps our in-memory game list consistent across all requests
-builder.Services.AddSingleton<GameService>();
+builder.Services.AddScoped<GameService>();
 
 var app = builder.Build();
 
