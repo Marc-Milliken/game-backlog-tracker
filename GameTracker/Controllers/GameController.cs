@@ -34,7 +34,7 @@ namespace GameTracker.Controllers
         public IActionResult Index(string GenreFilter, string searchString)
         {
             // Step 1: Get all games from the service
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             if (!string.IsNullOrWhiteSpace(GenreFilter))
             {
                 var query = games.Where(g => g.Genre == GenreFilter).ToList();
