@@ -1,4 +1,5 @@
 using GameTracker.Models;
+using GameTracker.Data;
 using GameTracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,12 +18,14 @@ namespace GameTracker.Controllers
     {
         // This is our game service that manages the game data
         private readonly GameService _gameService;
+        private readonly GameContext context;
 
         // CONSTRUCTOR - runs when the controller is created
         // It receives the GameService so we can use it in our actions
-        public GameController(GameService gameService)
+        public GameController(GameService gameService, GameContext context)
         {
             _gameService = gameService;
+            this.context = context;
         }
 
         // ACTION: Show the list of all games
@@ -136,7 +139,9 @@ namespace GameTracker.Controllers
             if (ModelState.IsValid)
             {
                 // Step 2: Add the game using our service
-                _gameService.AddGame(game);
+                game.DateAdded = DateTime.Now;
+                context.Games.Add(game);
+                context.SaveChanges();
 
                 // Step 3: Redirect back to the list page
                 // This prevents the form from being submitted twice if user refreshes
