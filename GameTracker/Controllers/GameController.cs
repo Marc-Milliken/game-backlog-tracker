@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq; // add if not already present
 using System.Reflection.Metadata;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GameTracker.Controllers
 {
@@ -34,7 +35,9 @@ namespace GameTracker.Controllers
         public IActionResult Index(string GenreFilter, string searchString)
         {
             // Step 1: Get all games from the service
-            var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g =>g).ToList();
+            ViewBag.Genres = new SelectList(genres);
+            var games = context.Games.AsQueryable().ToList();
             if (!string.IsNullOrWhiteSpace(GenreFilter))
             {
                 var query = games.Where(g => g.Genre == GenreFilter).ToList();

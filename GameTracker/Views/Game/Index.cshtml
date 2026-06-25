@@ -162,16 +162,7 @@
 
 
 <form asp-action="Index" id="inputState" class="form-control" method="get">
-    <div>
-        <select class="form-select" name="GenreFilter">
-            <option selected>Please Choose...</option>
-            @foreach (var g in DropGenre)
-            {
-                <option value="@g.Key">@g.Key</option>
-            }
-
-        </select>
-    </div>
+    @Html.DropDownList("GenreFilter", (SelectList)ViewBag.Genres, "Please choose")
     <div class="col-md-2">
         @* This creates a button that links to the Create page *@
         <button type="submit" class="btn btn-primary">Apply</button>
