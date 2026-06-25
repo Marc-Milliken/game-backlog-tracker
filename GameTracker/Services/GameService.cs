@@ -168,7 +168,7 @@ namespace GameTracker.Services
             if (game != null)
             {
                 // Remove it from the list
-                _games.Remove(game);
+                _context.Remove(game);
             }
         }
     }
