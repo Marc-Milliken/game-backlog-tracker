@@ -1,9 +1,8 @@
 ﻿using GameTracker.Data;
 using GameTracker.Models;
-using GameTracker.Services; // Add this using
 using System.Linq;
 
-namespace GameTracker.Data1
+namespace GameTracker.Services
 {
     public static class DbInitializer
     {

@@ -1,5 +1,4 @@
 using GameTracker.Data;
-using GameTracker.Data1;
 using GameTracker.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
