@@ -58,8 +58,10 @@ namespace GameTracker.Controllers
         public IActionResult SortByTitle(string direction = "asc")
         { 
             var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
 
-           
+
             var ordered = direction?.ToLower() == "desc"
                 ? games.OrderByDescending(g => g.Title)
                 : games.OrderBy(g => g.Title);
@@ -70,7 +72,8 @@ namespace GameTracker.Controllers
         public IActionResult SortByPlatform(string direction = "asc")
         {
             var games = context.Games.ToList();
-
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
 
             var ordered = direction?.ToLower() == "desc"
                 ? games.OrderByDescending(g => g.Platform)
@@ -82,7 +85,8 @@ namespace GameTracker.Controllers
         public IActionResult SortByDate(string direction = "asc")
         {
             var games = context.Games.ToList();
-
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
 
             var ordered = direction?.ToLower() == "desc"
                 ? games.OrderByDescending(g => g.DateAdded)
@@ -94,6 +98,8 @@ namespace GameTracker.Controllers
         public IActionResult AllGames()
         {
             var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
 
             return View("Index", games.ToList());
         }
@@ -101,6 +107,8 @@ namespace GameTracker.Controllers
         public IActionResult CompletedGames()
         {
             var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
             IEnumerable<Game> query = games.Where(g => g.IsCompleted);
             return View("Index", query.ToList());
         }
@@ -108,6 +116,8 @@ namespace GameTracker.Controllers
         public IActionResult  NotStartedGames()
         {
             var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
             IEnumerable<Game> query = games.Where(g => !g.IsCompleted);
             return View("Index", query.ToList());
         }
@@ -115,6 +125,8 @@ namespace GameTracker.Controllers
         public IActionResult GenreGames(string GenreFilter)
         {
             var games = context.Games.ToList();
+            var genres = context.Games.Select(g => g.Genre).Distinct().OrderBy(g => g).ToList();
+            ViewBag.Genres = new SelectList(genres);
             var query = games.Where(g => g.Genre == GenreFilter).ToList();
             return View("Index", query);
         }
