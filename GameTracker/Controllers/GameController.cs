@@ -54,7 +54,7 @@ namespace GameTracker.Controllers
         [HttpGet]
         public IActionResult SortByTitle(string direction = "asc")
         { 
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
 
            
             var ordered = direction?.ToLower() == "desc"
@@ -66,7 +66,7 @@ namespace GameTracker.Controllers
 
         public IActionResult SortByPlatform(string direction = "asc")
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
 
 
             var ordered = direction?.ToLower() == "desc"
@@ -78,7 +78,7 @@ namespace GameTracker.Controllers
 
         public IActionResult SortByDate(string direction = "asc")
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
 
 
             var ordered = direction?.ToLower() == "desc"
@@ -90,28 +90,28 @@ namespace GameTracker.Controllers
 
         public IActionResult AllGames()
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
 
             return View("Index", games.ToList());
         }
 
         public IActionResult CompletedGames()
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             IEnumerable<Game> query = games.Where(g => g.IsCompleted);
             return View("Index", query.ToList());
         }
 
         public IActionResult  NotStartedGames()
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             IEnumerable<Game> query = games.Where(g => !g.IsCompleted);
             return View("Index", query.ToList());
         }
 
         public IActionResult GenreGames(string GenreFilter)
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             var query = games.Where(g => g.Genre == GenreFilter).ToList();
             return View("Index", query);
         }
@@ -233,7 +233,7 @@ namespace GameTracker.Controllers
 
         public IActionResult ExportToText()
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             StringBuilder myStringBuilder = new StringBuilder("Your own gaming backlog!" + Environment.NewLine);
             foreach (var game in games)
             {
