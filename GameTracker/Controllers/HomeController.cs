@@ -1,11 +1,12 @@
+using GameTracker.Data;
 using GameTracker.Models;
 using GameTracker.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using System;
 using System.Collections.Generic;
-using System.Linq; // add if not already present
+using System.Diagnostics;
 using System.IO;
+using System.Linq; // add if not already present
 using System.Text;
 
 namespace GameTracker.Controllers
@@ -13,16 +14,18 @@ namespace GameTracker.Controllers
     public class HomeController : Controller
     {
         private readonly GameService _gameService;
+        private readonly GameContext context;
 
         // CONSTRUCTOR - runs when the controller is created
         // It receives the GameService so we can use it in our actions
-        public HomeController(GameService gameService)
+        public HomeController(GameService gameService, GameContext context)
         {
             _gameService = gameService;
+            this.context = context;
         }
         public IActionResult Index(string direction = "desc")
         {
-            var games = _gameService.GetAllGames();
+            var games = context.Games.ToList();
             var ordered = games.OrderByDescending(g => g.DateAdded).Take(3);
             
             return View("Index", ordered.ToList());
